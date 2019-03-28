@@ -11,7 +11,7 @@ import org.junit.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.cobigen.picocli.uitls.CreateJarFile;
+import com.cobigen.picocli.utils.CreateJarFile;
 
 public class CreateJarFileTest {
 	private static Logger logger = LoggerFactory.getLogger(CreateJarFileTest.class);

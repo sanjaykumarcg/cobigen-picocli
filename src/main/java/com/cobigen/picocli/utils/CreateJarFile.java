@@ -1,4 +1,4 @@
-package com.cobigen.picocli.uitls;
+package com.cobigen.picocli.utils;
 
 import java.io.File;
 import java.io.IOException;
@@ -32,12 +32,16 @@ public class CreateJarFile {
 		super();
 	}
 
-	File jarFile = null;
-	File jarPath = new File("C:\\MyData\\IDE4\\workspaces\\.metadata\\cobigen_jar");
+	File jarFile = null;	
+	File jarPath = new File("template_Jar/cobigen_jar");	
+	File jarFileDir = jarPath.getAbsoluteFile();	
 	
-	
+	/**
+	 * @param 
+	 * 		User input entity file
+	 * */
 	public void createJarAndGenerateIncr(File inputFile) {
-		jarFile = TemplatesJarUtil.getJarFile(true, jarPath);
+		jarFile = TemplatesJarUtil.getJarFile(true, jarFileDir);
 		logger.info("get jar file");
 		
 		if (jarFile != null) {
@@ -68,19 +72,19 @@ public class CreateJarFile {
 				// if the context configuration is not valid
 				e.printStackTrace();
 			} catch (IOException e) {
-				// If I/O operation failed then it willthrow exception
+				// If I/O operation failed then it will throw exception
 				e.printStackTrace();
 			}
 
-			/**
-			 * Registers the given triggerInterpreter,tsmerge, to be registered
-			 */
+			
 
 			logger.info("After create method");
 		}
 
 	}
-
+	/**
+	 * Registers the given triggerInterpreter,tsmerge, to be registered
+	 */
 	public void registerPlugin() {
 		JavaTriggerInterpreter javaTriger = new JavaTriggerInterpreter("java");
 		PluginRegistry.registerTriggerInterpreter(javaTriger);
@@ -93,6 +97,11 @@ public class CreateJarFile {
 		List<Merger> merger = Lists.newLinkedList();
 		merger.add(new TextAppender("textmergerActivator", false));
 	}
+	/**
+	 * Validating user input file is correct or not
+	 * @param inputFile 
+	 * 	user input file
+	 * */
 	public boolean validateFile(File inputFile) {
 		if (!inputFile.exists() || !inputFile.canRead()) {
 			logger.info("The file " + inputFile.getAbsolutePath() + " is not a valid input for CobiGen.");

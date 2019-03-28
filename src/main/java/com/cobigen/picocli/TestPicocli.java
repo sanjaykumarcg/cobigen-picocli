@@ -3,6 +3,7 @@ import java.io.File;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URI;
+import java.net.URL;
 import java.nio.charset.Charset;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -13,7 +14,7 @@ import org.eclipse.core.runtime.IPath;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.cobigen.picocli.uitls.CreateJarFile;
+import com.cobigen.picocli.utils.CreateJarFile;
 import com.devonfw.cobigen.api.CobiGen;
 import com.devonfw.cobigen.api.exception.InvalidConfigurationException;
 import com.devonfw.cobigen.api.extension.Merger;
@@ -53,15 +54,17 @@ public class TestPicocli {
 		String userInput = inputReader.nextLine();
 		File inputFile = new File(userInput);
 		CreateJarFile createjarFile = new CreateJarFile();
-		File jarPath = new File("C:\\MyData\\IDE4\\workspaces\\.metadata\\cobigen_jar");
-
+			
+		File jarPath = new File("template_Jar/cobigen_jar");
+		//URL resource = TestPicocli.class.getResource("/cobigen_jar");
+		File jarFileDir = jarPath.getAbsoluteFile();	
 		if (!jarPath.exists()) {
 			jarPath.mkdir();
 
 		}
 
 		try {
-			TemplatesJarUtil.downloadLatestDevon4jTemplates(true, jarPath);
+			TemplatesJarUtil.downloadLatestDevon4jTemplates(true, jarFileDir);
 			createjarFile.validateFile(inputFile);
 			createjarFile.createJarAndGenerateIncr(inputFile);
 

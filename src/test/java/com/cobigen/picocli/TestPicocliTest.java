@@ -2,6 +2,7 @@ package com.cobigen.picocli;
 
 import static org.junit.Assert.*;
 
+import java.io.File;
 import java.util.Scanner;
 
 import org.junit.Before;
@@ -9,7 +10,8 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class TestPicocliTest {
-
+	/** Test resources root path */
+    private static String testFileRootPath = "src/test/resources/testdata/unittest/";
 	@BeforeClass
 	public static void setUpBeforeClass() throws Exception {
 	}
@@ -21,10 +23,12 @@ public class TestPicocliTest {
 	@Test
 	public void testMain() {
 		try {
-			TestPicocli.main("C:\\\\Users\\\\syadav9\\\\Desktop\\\\employeemanagement\\\\dataaccess\\\\api\\\\EmployeeEntity.java");
+			 File baseFile = new File(testFileRootPath + "EmployeeEntity.java");
+			 String args = "main";
+			TestPicocli.main(args);
 			Scanner in = new Scanner(System.in);
 			String s = in. nextLine();
-			assertEquals("C:\\\\Users\\\\syadav9\\\\Desktop\\\\employeemanagement\\\\dataaccess\\\\api\\\\EmployeeEntity.java", s);
+			assertEquals(baseFile, s);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
