@@ -28,7 +28,10 @@ public class CreateJarFileTest {
 	public void test() {
 		fail("Not yet implemented");
 	}
-	
+	/**
+	 * Test case to check user file is valid or not
+	 * 
+	 **/
 	@Test
 	public void testvalidateFile() {
 		logger.info("Please enter userInput");

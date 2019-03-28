@@ -42,43 +42,9 @@ import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
 @Command(name = "TestPicocli", header = "%n@|TestPicocli Hello world demo|@")
-public class TestPicocli  {
+public class TestPicocli {
 	private static Logger logger = LoggerFactory.getLogger(TestPicocli.class);
 	GenerateMojo generateMojo = new GenerateMojo();
-	
-	
-	
-	public static boolean isFilenameValid(File input) {
-
-		try {
-			input.getCanonicalPath();
-			System.out.println("valid file");
-			String fileName = input.getName().toUpperCase();
-			if (fileName.endsWith(".JAVA") || fileName.endsWith(".YML") || fileName.endsWith(".TXT")) {
-				System.out.println("valid file");
-				return true;
-			} else {
-				System.out.println("Not valid file");
-				return false;
-			}
-
-		} catch (IOException e) {
-			System.out.println("Not valid file");
-			return false;
-		}
-	}
-
-	public static boolean isValidDir(String path) {
-		File file = new File(path);
-		if (!file.exists()) {
-			System.out.println("Not a valid directories");
-			return false;
-		}
-		System.out.println("Valid directories");
-		return true;
-	}
-
-	
 
 	public static void main(String... args) throws Exception {
 		logger.info("start main method");
@@ -100,10 +66,10 @@ public class TestPicocli  {
 			createjarFile.createJarAndGenerateIncr(inputFile);
 
 		} catch (MalformedURLException e1) {
-			// TODO explain here what kind of exception and why was it thrown
+			// if a path of one of the class path entries is not a valid URL
 			e1.printStackTrace();
 		} catch (IOException e1) {
-			// TODO Auto-generated catch block
+			// IOException occurred
 			e1.printStackTrace();
 		}
 		logger.info("successfully call cobigen create method");
@@ -111,5 +77,4 @@ public class TestPicocli  {
 
 	}
 
-	
 }
